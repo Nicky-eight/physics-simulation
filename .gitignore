@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Streamlit / IDE
+.streamlit/
+.idea/
+.vscode/
+*.log
+.DS_Store
+
+# 环境配置
+.env
+.env.*
+
+# 本地内部配置（不纳入版本控制）
+.codeartsdoer/
