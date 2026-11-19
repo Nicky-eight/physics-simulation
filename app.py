@@ -135,13 +135,26 @@ div[data-testid="stTextInput"] input:focus{
 }
 .mp-meta b{color:#22d3ee;font-weight:600;}
 .katex,.katex *{color:#e2e2e8 !important;}
+[data-testid="stExpander"] details,
+[data-testid="stExpander"] [data-testid="stExpanderDetails"]{
+  background:#000000 !important;border-color:rgba(63,63,70,.9) !important;
+}
+[data-testid="stExpander"] [data-testid="stAlert"]{
+  background:#000000 !important;border:1px solid rgba(63,63,70,.9) !important;
+}
+[data-testid="stExpander"] [data-testid="stAlert"] *{
+  background-color:transparent !important;background-image:none !important;
+  color:#ffffff !important;-webkit-text-fill-color:#ffffff !important;
+}
+[data-testid="stExpander"] [data-testid="stAlert"] svg{fill:#ffffff !important;}
 [data-testid="stExpander"] [data-testid="stMarkdownContainer"] p,
 [data-testid="stExpander"] [data-testid="stMarkdownContainer"] li,
 [data-testid="stExpander"] [data-testid="stMarkdownContainer"] strong,
 [data-testid="stExpander"] [data-testid="stMarkdownContainer"] td,
 [data-testid="stExpander"] [data-testid="stMarkdownContainer"] th,
 [data-testid="stExpander"] [data-testid="stAlert"] p,
-[data-testid="stExpander"] [data-testid="stAlert"] li{color:#e2e2e8 !important;}
+[data-testid="stExpander"] [data-testid="stAlert"] li,
+[data-testid="stExpander"] [data-testid="stAlert"] div{color:#ffffff !important;}
 [data-testid="stExpanderHeader"],[data-testid="stExpanderHeader"] *{color:#f4f4f5 !important;}
 .katex .mord,.katex .mbin,.katex .mrel,.katex .mopen,.katex .mclose{color:#e2e2e8 !important;}
 .mp-meta code{
@@ -1538,7 +1551,7 @@ reload();
 
 function panelRects() {
   const x0 = 40, x1 = W - 40;
-  const y0 = 112, y1 = H - 136;
+  const y0 = 136, y1 = H - 136;
   const gap = 14;
   const totalW = x1 - x0;
   const lw = Math.round(totalW * 0.58);
@@ -1566,7 +1579,7 @@ function drawPanel(r, title, unit, color, fn, fill) {
   hi += pad;
 
   const mapY = v => r.y + r.h - 20 - (v - lo) / (hi - lo) * (r.h - 40);
-  const mapX = t => r.x + 52 + t / P.tmax * (r.w - 70);
+  const mapX = t => r.x + 70 + t / P.tmax * (r.w - 88);
 
   ctx.fillStyle = 'rgba(9,9,11,0.55)';
   ctx.strokeStyle = 'rgba(34,211,238,0.20)';
@@ -1622,8 +1635,8 @@ function drawPanel(r, title, unit, color, fn, fill) {
   for (const tk of ticks) {
     ctx.fillText(tk.toFixed(1) + 's', mapX(tk) - 8, r.y + r.h - 5);
   }
-  ctx.fillText(hi.toFixed(1), r.x + 6, mapY(hi) + 12);
-  ctx.fillText(lo.toFixed(1), r.x + 6, mapY(lo) + 4);
+  ctx.fillText(hi.toFixed(1), r.x + 12, mapY(hi) + 12);
+  ctx.fillText(lo.toFixed(1), r.x + 12, mapY(lo) + 4);
 
   const cx = mapX(tNow);
   const cv = fn(tNow);
@@ -1713,7 +1726,7 @@ reload();
 
 function panelRects() {
   const x0 = 40, x1 = W - 40;
-  const y0 = 112, y1 = H - 136;
+  const y0 = 136, y1 = H - 136;
   const gap = 14;
   const totalW = x1 - x0;
   const lw = Math.round(totalW * 0.58);
@@ -1741,7 +1754,7 @@ function drawPanel(r, title, unit, color, fn) {
   hi += pad;
 
   const mapY = v => r.y + r.h - 20 - (v - lo) / (hi - lo) * (r.h - 40);
-  const mapX = t => r.x + 52 + t / tmaxNow * (r.w - 70);
+  const mapX = t => r.x + 70 + t / tmaxNow * (r.w - 88);
 
   ctx.fillStyle = 'rgba(9,9,11,0.55)';
   ctx.strokeStyle = 'rgba(34,211,238,0.20)';
@@ -1784,8 +1797,8 @@ function drawPanel(r, title, unit, color, fn) {
     const tk = tmaxNow * k / 4;
     ctx.fillText(tk.toFixed(1) + 's', mapX(tk) - 8, r.y + r.h - 5);
   }
-  ctx.fillText(hi.toFixed(1), r.x + 6, mapY(hi) + 12);
-  ctx.fillText(lo.toFixed(1), r.x + 6, mapY(lo) + 4);
+  ctx.fillText(hi.toFixed(1), r.x + 12, mapY(hi) + 12);
+  ctx.fillText(lo.toFixed(1), r.x + 12, mapY(lo) + 4);
 
   const cx = mapX(tNow);
   const cy = mapY(fn(tNow));
